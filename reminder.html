@@ -51,7 +51,7 @@
       var hrs = time.getHours();
       var min = time.getMinutes();
       var sec = time.getSeconds();
-    
+    <p> document.write(time)</p>
       if(time == 1){
         if(course1 == "Computer Architecture" && hrs < 12 && min > 0){
           if(min > 0 && min <10){document.getElementById('clock').innerHTML = course1 + " today at " + hrs + ": 0" + min;}
