@@ -14,87 +14,13 @@
 <div id = "clock"></div>
 <script type="text/javascript">
     setInterval(displayclock, 500);
-    function displayclock (){
-<!--      var weekday = new Array(7);
-      var courseTime = new Array(7);
-      for(int i = 0; i<7; i++){
-        weekday[i] = new Array(2);
-        courseTime[i] = new Array(2);
-      }
-      
-      weekday[1][0] = "Computer Architecture";
-      courseTime[1][0] = "12:00pm - 1:20pm";
-      weekday[1][1] = "Intro. to Linear Alg.";
-      courseTime[1][1] = "5:00pm - 6:20pm";
-      
-      weekday[2][0] = "Physics II Recitation";
-      courseTime[2][0] = "1:40pm - 3:00pm";
-      weekday[2][1] = "Comp. Arch Recitation";
-      courseTime[2][1] = "5:00pm - 6:20pm";
-      
-      weekday[3][0] = "Physics II Lab";
-      courseTime[3][0] = "9:15am - 12:15pm";
-      weekday[3][1] = "Intro. to Linear Alg.";
-      courseTime[3][1] = "5:00pm - 6:20pm";
-      
-      weekday[4][0] = "Computer Architecture";
-      courseTime[2][1] = "12:00pm - 1:20pm";
-      weekday[4][1] = "";
-      
-      weekday[5][0] = "";
-      weekday[5][1] = "";
-   -->   
+    function displayclock (){  
       
       var time = new Date();
-   <--   var course1 = weekday[time.getDay()][0];
-      var course2 = weekday[time.getDay()][1];  -->
       var hrs = time.getHours();
       var min = time.getMinutes();
       var sec = time.getSeconds();
-  <!--
-      if(time == 1){
-        if(course1 == "Computer Architecture" && hrs < 12 && min > 0){
-          if(min > 0 && min <10){document.getElementById('clock').innerHTML = course1 + " today at " + hrs + ": 0" + min;}
-          else
-          {document.getElementById('clock').innerHTML = course1 + " today at " + hrs + ":" + min;}
-        }
-        else if(course2 == "Intro. to Linear Alg." && hrs < 17 && min < 20){
-          if(min > 0 && min <10){document.getElementById('clock').innerHTML = course2 + " today at " + hrs + ": 0" + min;}
-          else
-          {document.getElementById('clock').innerHTML = course2 + " today at " + hrs + ":" + min;}
-        }
-      }
-      
-      else if(time == 2){
-        if(!(hrs >= 13) && !(min >= 10)){
-          document.getElementById('clock').innerHTML = course1 + " today at " + courseTime[2][0];
-        }
-        else if(!(hrs >= 13) && !(min >= 20)){
-          document.getElementById('clock').innerHTML = course1 + " is starting now!!";
-        }
-        if(!(hrs >= 17) && !(min >= 5)){
-          document.getElementById('clock').innerHTML = course2 + " today at " + courseTime[2][0];
-        }
-        else if(!(hrs >= 17) && !(min >= 15)){
-          document.getElementById('clock').innerHTML = course2 + " is starting now!!";
-        }
-      }
-      
-      else if(time == 3){
-        if(!(hrs <= 9) && !(min <= 5)){
-          document.getElementById('clock').innerHTML = course1 + " today at " + courseTime[2][0];
-        }
-        else if(!(hrs <= 9) && !(min <= 15)){
-          document.getElementById('clock').innerHTML = course1 + " is starting now!!";
-        }
-        if(hrs < 17 && min != 0){
-          document.getElementById('clock').innerHTML = course2 + " today at " + courseTime[2][0];
-        }
-        else if(hrs >= 17 && min >= 0)){
-          document.getElementById('clock').innerHTML = course2 + " is starting now!!";
-        }
-      }
-  -->
+ 
       if (hrs > 12){
         hrs = hrs - 12;
       }
@@ -103,7 +29,6 @@
         hrs = 12;
       }
       
-      <!--document.getElementById('clock').innerHTML = "weekday: " + time + ", time: " + hrs + ":" + min + ":" + sec;-->
       document.getElementById('clock').innerHTML = "weekday: " + time + ", time: " + hrs + ":" + min + ":" + sec;
     }
   </script>
