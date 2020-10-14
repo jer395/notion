@@ -12,7 +12,7 @@
   </style>
 </head>
 <div id = "clock"></div>
-<script type="text/javascript"></script>
+<script type="text/javascript">
     setInterval(displayclock, 500);
     function displayclock (){
       var time = new Date();
@@ -30,5 +30,6 @@
     
       document.getElementById('clock').innerHTML = hrs + ":" + min + ":" + sec;
     }
+  </script>
 </body>
 </html>
