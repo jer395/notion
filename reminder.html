@@ -15,7 +15,7 @@
 <script type="text/javascript">
     setInterval(displayclock, 500);
     function displayclock (){
-      var weekday = new Array(7);
+<!--      var weekday = new Array(7);
       var courseTime = new Array(7);
       for(int i = 0; i<7; i++){
         weekday[i] = new Array(2);
@@ -43,11 +43,11 @@
       
       weekday[5][0] = "";
       weekday[5][1] = "";
-      
+   -->   
       
       var time = new Date();
-      var course1 = weekday[time.getDay()][0];
-      var course2 = weekday[time.getDay()][1];
+   <--   var course1 = weekday[time.getDay()][0];
+      var course2 = weekday[time.getDay()][1];  -->
       var hrs = time.getHours();
       var min = time.getMinutes();
       var sec = time.getSeconds();
@@ -103,6 +103,7 @@
         hrs = 12;
       }
       
+      <!--document.getElementById('clock').innerHTML = "weekday: " + time + ", time: " + hrs + ":" + min + ":" + sec;-->
       document.getElementById('clock').innerHTML = "weekday: " + time + ", time: " + hrs + ":" + min + ":" + sec;
     }
   </script>
