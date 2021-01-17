@@ -48,6 +48,15 @@ body{
     reminders[4] = "CS Quiz out today!, Respond to Class Discussion - U.S. Labor & Wrk";
     reminders[5] = "CS Quiz!";
     reminders[6] = "Relax, it's the weekend";
+    
+    var preview = new Array(7);
+    preview[0] = 'CS Homework may be due today!';
+    preview[1] = 'US Labor and CS';
+    preview[2] = 'Upcoming: Respond to classmates';
+    preview[3] = 'Data 101';
+    preview[4] = 'U.S. Work and Labor';
+    preview[5] = 'Congrats on making through the week ;-)';
+    preview[6] = '';
 
     
     var today = new Date();
@@ -56,6 +65,9 @@ body{
     var date = dayOfWeek+" " + (today.getMonth()+1) + "/" +today.getDate() +'/'+today.getFullYear()  ;
 
     var greet;
+    var hint;
+    
+    hint = preview[today.getDay()];
 /*
     if (hrs < 12)
         greet = 'Good Morning  ';
@@ -65,6 +77,6 @@ body{
         greet = 'Good Evening  ';
 */
     document.getElementById('lbl').innerHTML =
-        greet=reminders[today.getDay()] +`<div id="date"> It's ${date}</div>`;
+        greet=reminders[today.getDay()] +`<div id="date"> It's ${hint}</div>`;
 </script> 
 </html>
