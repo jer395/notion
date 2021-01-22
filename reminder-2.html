@@ -8,12 +8,14 @@
 #lbl {
     font-family: 'Nunito';
     font-size: 30px;
-    color: #2a9bc9;
+    color: #23b07e;
     padding: 15px;
+    top: 20px;
+    position:relative;
     text-align: center;
     line-height: 1;
-    height:85%
-
+    height:85%;
+    animation: color-change 3s infinite;
 
 }
 #date{
@@ -23,6 +25,14 @@
 }
 body{
     background-color: #FFFFFF;
+}
+
+@keyframes color-change {
+  0%   { color: #2a9bc9; left: 0px;}
+  25%  { left: 5px;}
+  50%  { color: #23b07e; left: -5px;}
+  75%  { left: 5px;}
+  100% { color: #2a9bc9; left: 0px;}
 }
     </style>
 </head>
@@ -52,7 +62,7 @@ body{
    
     var preview = new Array(7);
     preview[0] = '';
-    preview[1] = '12:35 pm - 1:55 pm';
+    preview[1] = '12:55 pm - 1:55 pm';
     preview[2] = '1:55 pm - 2:50 pm';
     preview[3] = '12:00 pm - 1:20 pm';
     preview[4] = '12:35 pm - 1:55 pm';
