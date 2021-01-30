@@ -1,3 +1,4 @@
+  
 <!DOCTYPE html>
 <html> 
 <head>
@@ -23,6 +24,7 @@
     font-size:small;
     color: #b6b7b8;
 }
+#myImage{}
 body{
     background-color: #FFFFFF;
 }
@@ -38,6 +40,9 @@ body{
 </head>
 <body>
     <div id="lbl"></div>
+ 	<div id="myImage">
+	<img src="https://media3.giphy.com/media/5bgKeGjU80kNLyJ2M0/giphy.gif" alt="Waves" width="100%" height="333">
+</div>
 </body>
 
 <script>
@@ -87,6 +92,18 @@ body{
     else if (hrs >= 17 && hrs <= 24)
         greet = 'Good Evening  ';
 */
+
+/*CREATE IMAGE FUNCTION*/
+image()
+function image() {
+  var today = new Date();
+  var x = document.getElementById("myImage");
+  if (today.getDay()==0  || today.getDay()==6) {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
     document.getElementById('lbl').innerHTML =
         greet=reminders[today.getDay()] +`<div id="date"> ${hint}</div>`;
 </script> 
