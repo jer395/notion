@@ -43,6 +43,7 @@ body{
         <br>
         <span id="reminder-title" style="font-weight: bold; text-decoration: underline;"></span>
         <div id="reminders" style="margin-left: 10px; font-size: small;"></div>
+        <span id="endline" style="display: none;">jerem$ >> </span>
 </body>
 
 <script>
@@ -85,9 +86,11 @@ var i = 0;
   }, 100);
   
   function continueFunction() {
-    document.getElementById('reminder-title').classList.add('type-effect');
+    
   	document.getElementById('reminder-title').innerHTML = ">> Today's reminders: ";
     document.getElementById('reminders').innerHTML = "- [Class/work] (Online/IRL) @ [start_time] - [end_time]"+`<br>`+"- [weekly assignment] due tonight!!";
+    document.getElementById('endline').style.display = "inline";
+    document.getElementById('endline').classList.add('type-effect');
   }
 </script> 
 </html>
