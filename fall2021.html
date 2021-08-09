@@ -10,13 +10,20 @@ body{
 	font-family: 'IBM Plex Mono', monospace;
     background-color: #2f3437;
     color: white;
+    line-height: 1.5;
 }
 
 #greeting {
-	overflow: hidden;
+	/*overflow: hidden;*/
     
-  	border-right: 10px solid orange;
-  	animation: typing 3.5s steps(65, end), blink-caret 1s step-end infinite;
+  	/*border-right: 10px solid orange;*/
+  	/*animation: typing 3.5s steps(65, end), blink-caret 1s step-end infinite*/;
+}
+
+.type-effect {
+	overflow: hidden;
+	border-right: 10px solid orange;
+    animation: typing 3.5s steps(65, end), blink-caret 1s step-end infinite;
 }
 
 @keyframes typing {
@@ -33,9 +40,14 @@ body{
 <body>
     	<span>jerem$ >> </span>
         <span id="greeting"></span>
+        <br>
+        <span id="reminder-title" style="font-weight: bold; text-decoration: underline;"></span>
+        <div id="reminders" style="margin-left: 10px; font-size: small;"></div>
 </body>
 
 <script>
+	document.getElementById('greeting').classList.add('type-effect');
+
     var today = new Date();
     var hrs = today.getHours();
 
@@ -43,9 +55,11 @@ body{
 
     if (hrs < 12)
         greet = 'Good Morning, Jeremy. ';
-    else if (hrs >= 12 && hrs <= 17)
+    else if (hrs >= 12 && hrs < 17)
         greet = 'Good Afternoon, Jeremy. ';
-    else if (hrs >= 17 && hrs <= 24)
+    else if (hrs == 17) 
+    	greet = 'It\'s five o\'clock somewhere. -- Wait, that\'s here!!';
+    else if (hrs > 17 && hrs <= 24)
         greet = 'Good Evening, Jeremy. ';
         
     var random_ending = Math.random();
@@ -54,9 +68,9 @@ body{
     } else if(random_ending <= 0.50){
     	random_ending = "You're gonna crush it.";
     } else if(random_ending <= 0.75) {
-    	random_ending = "blah1";
+    	random_ending = "It's time to get to work.";
     } else {
-    	random_ending = "blah2";
+    	random_ending = "You look great!";
     }
 
     //document.getElementById('greeting').innerHTML += greet;
@@ -67,7 +81,13 @@ var i = 0;
   	if(i < str.length) {
     	document.getElementById('greeting').innerHTML += str[i];
         i+=1;
-    } else {clearInterval();}
+    } else {clearInterval(); document.getElementById('greeting').classList.remove('type-effect'); continueFunction();}
   }, 100);
+  
+  function continueFunction() {
+    document.getElementById('reminder-title').classList.add('type-effect');
+  	document.getElementById('reminder-title').innerHTML = ">> Today's reminders: ";
+    document.getElementById('reminders').innerHTML = "- [Class/work] (Online/IRL) @ [start_time] - [end_time]"+`<br>`+"- [weekly assignment] due tonight!!";
+  }
 </script> 
 </html>
