@@ -35,6 +35,29 @@ body{
   from, to { border-color: orange; }
   50% { border-color: transparent; }
 }
+
+#group-div {
+  position: relative;
+}
+
+#after-span {
+  display: inline;
+  padding: 4px 0px;
+  outline: none;
+  width: 100%;
+  overflow: hidden;
+  resize: none;
+  min-height: 40px;
+  text-indent: 97px;
+  caret-color: transparent;
+}
+/*
+#endline {
+  position: absolute;
+  top: 4px;
+  left: 0px;
+  z-index: 2;
+}*/
     </style>
 </head>
 <body>
@@ -43,7 +66,10 @@ body{
         <br>
         <span id="reminder-title" style="font-weight: bold; text-decoration: underline;"></span>
         <div id="reminders" style="margin-left: 10px; font-size: small;"></div>
-        <span id="endline" style="display: none;">jerem$ >> </span>
+        <span id="prefix" style="display: none;">jerem$ >> </span>
+        <span id="after-span" contenteditable></span>
+        <span id="endline" style="display: none;"></span>
+
 </body>
 
 <script>
@@ -90,6 +116,7 @@ var i = 0;
   	document.getElementById('reminder-title').innerHTML = ">> Today's reminders: ";
     document.getElementById('reminders').innerHTML = "- [Class/work] (Online/IRL) @ [start_time] - [end_time]"+`<br>`+"- [weekly assignment] due tonight!!";
     document.getElementById('endline').style.display = "inline";
+    document.getElementById('prefix').style.display = "inline";
     document.getElementById('endline').classList.add('type-effect');
   }
 </script> 
