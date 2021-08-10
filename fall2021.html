@@ -104,19 +104,21 @@ body{
     var str = greet + random_ending;
 
 var i = 0;
-  setInterval(function(){ 
+  var interval = setInterval(function(){ 
   	if(i < str.length) {
     	document.getElementById('greeting').innerHTML += str[i];
         i+=1;
-    } else {clearInterval(); document.getElementById('greeting').classList.remove('type-effect'); continueFunction();}
+    } else { document.getElementById('greeting').classList.remove('type-effect');
+    continueFunction();}
   }, 100);
   
   function continueFunction() {
-    
+    clearInterval(interval);
   	document.getElementById('reminder-title').innerHTML = ">> Today's reminders: ";
     document.getElementById('reminders').innerHTML = "- [Class/work] (Online/IRL) @ [start_time] - [end_time]"+`<br>`+"- [weekly assignment] due tonight!!";
     document.getElementById('endline').style.display = "inline";
     document.getElementById('prefix').style.display = "inline";
+    document.getElementById('after-span').focus();
     document.getElementById('endline').classList.add('type-effect');
   }
 </script> 
