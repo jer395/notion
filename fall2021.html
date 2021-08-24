@@ -60,7 +60,7 @@ body{
 }*/
     </style>
 </head>
-<body>
+<body onclick="continueFromBodyFunction()">
     	<span>jerem$ >> </span>
         <span id="greeting"></span>
         <br>
@@ -73,6 +73,7 @@ body{
 </body>
 
 <script>
+	var ableToContFromBody = 0;
 	document.getElementById('greeting').classList.add('type-effect');
 
     var today = new Date();
@@ -112,6 +113,12 @@ var i = 0;
     continueFunction();}
   }, 100);
   
+  function continueFromBodyFunction() {
+  	if(ableToContFromBody != 0){
+    	continueFunction();
+    }
+  }
+  
   function continueFunction() {
     clearInterval(interval);
   	document.getElementById('reminder-title').innerHTML = ">> Today's reminders: ";
@@ -120,6 +127,7 @@ var i = 0;
     document.getElementById('prefix').style.display = "inline";
     document.getElementById('after-span').focus();
     document.getElementById('endline').classList.add('type-effect');
+    ableToContFromBody = 1;
   }
 </script> 
 </html>
