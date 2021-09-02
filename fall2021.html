@@ -62,15 +62,17 @@ border-right: 10px solid transparent;
     </style>
 </head>
 <body onclick="continueFromBodyFunction()">
+	<div id="main-container">
     	<span>jerem$ >> </span>
         <span id="greeting"></span>
         <br>
-        <span id="reminder-title" style="font-weight: bold; text-decoration: underline;"></span>
+        <span id="reminder-title" style="font-weight: bold; text-decoration: underline; color: #e332c7;"></span>
         <div id="reminders" style="margin-left: 10px; font-size: small;"></div>
         <span id="prefix" style="display: none;">jerem$ >> </span>
         <span id="after-span" contenteditable></span>
         <span id="endline" style="display: none;"></span>
-
+	</div>
+    <div id="cal-button"></div>
 </body>
 
 <script>
@@ -120,11 +122,38 @@ var i = 0;
     }
   }
   
+  function displayTable() {
+  	//document.getElementById('main-container').style.display = "none";
+    //document.getElementById('table').style.display = "block";
+  }
+  
+  function hideTable() {
+  	//document.getElementById('table').style.display = "none";
+    //document.getElementById('main-container').style.display = "block";
+  }
+  
   function continueFunction() {
     clearInterval(interval);
+    
+    //declare each class
+    var events = new Array(11);
+    //'L'=Lec, 'R'=Rec, 'O'=Online, 'I'=In-person
+    events[0] = "LOSoftware Meth";
+    events[1] = "LODiscrete II";
+	events[2] = "LOData Management";
+    events[3] = "LIStats Inference";
+    events[4] = "LOSoftware Meth";
+    events[5] = "RISoftware Meth";
+    events[6] = "Data Management";
+    events[7] = "Discrete II";
+    events[8] = "Discrete II";
+    events[9] = "Data Management";
+    events[10] = "Stats Inference";
+   
+
   	document.getElementById('reminder-title').innerHTML = ">> Today's reminders: ";
     document.getElementById('reminders').innerHTML = "- [Class/work] (Online/IRL) @ [start_time] - [end_time]"+`<br>`+"- [weekly assignment] due tonight!!";
-    document.getElementById('endline').style.display = "inline";
+    document.getElementById('after-span').style.display = "inline";
     document.getElementById('prefix').style.display = "inline";
     document.getElementById('after-span').focus();
     document.getElementById('after-span').classList.add('type-effect');
