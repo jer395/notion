@@ -41,8 +41,9 @@ body{
 }
 
 #after-span {
+border-right: 10px solid transparent;
   display: inline;
-  padding: 4px 0px;
+  padding: 0px 0px;
   outline: none;
   width: 100%;
   overflow: hidden;
@@ -126,7 +127,7 @@ var i = 0;
     document.getElementById('endline').style.display = "inline";
     document.getElementById('prefix').style.display = "inline";
     document.getElementById('after-span').focus();
-    document.getElementById('endline').classList.add('type-effect');
+    document.getElementById('after-span').classList.add('type-effect');
     ableToContFromBody = 1;
   }
 </script> 
