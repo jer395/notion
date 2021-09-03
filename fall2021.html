@@ -161,8 +161,8 @@ var i = 0;
     
     var sampleStr = "";
     for(var i = 0; i < entryNums; i++){
-    	if(hrs > calendar[dow][(i*7)+6]){}
-        else if(hrs > calendar[dow][(i*7)+5]){
+    	if(hrs >= calendar[dow][(i*7)+6]){}
+        else if(hrs >= calendar[dow][(i*7)+5]){
         	sampleStr += `<del>` + "- " + calendar[dow][i*7]+`</del>`;
         	if(calendar[dow][(i*7)+1] == 1){
         		sampleStr += `<del><sup style = "padding: 0px 3px; margin: 5px; border: 1px solid transparent; border-radius: 3px; background-color: #9831c4;">Lec</sup></del>`;
