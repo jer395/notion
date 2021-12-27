@@ -61,150 +61,16 @@ border-right: 10px solid transparent;
 }*/
     </style>
 </head>
-<body onclick="continueFromBodyFunction()">
+<body>
 	<div id="main-container">
-    	<span>jerem$ >> </span>
+    	<span>jerem$ >> Semester is over!!</span>
         <span id="greeting"></span>
         <br>
         <span id="reminder-title" style="font-weight: bold; text-decoration: underline; color: #e04583;"></span>
         <div id="reminders" style="margin-left: 10px; font-size: small;"></div>
-        <span id="prefix" style="display: none;">jerem$ >> </span>
-        <span id="after-span" contenteditable></span>
+        <span id="prefix">jerem$ >> </span>
+        <span id="after-span" contenteditable class = "type-effect"></span>
         <span id="endline" style="display: none;"></span>
 	</div>
-    <div id="cal-button"></div>
-</body>
-
-<script>
-	var ableToContFromBody = 0;
-	document.getElementById('greeting').classList.add('type-effect');
-
-    var today = new Date();
-    var hrs = today.getHours();
-
-    var greet;
-
-    if (hrs < 12)
-        greet = 'Good Morning, Jeremy. ';
-    else if (hrs >= 12 && hrs < 17)
-        greet = 'Good Afternoon, Jeremy. ';
-    else if (hrs == 17) 
-    	greet = 'It\'s five o\'clock somewhere. -- Wait, that\'s here!! ';
-    else if (hrs > 17 && hrs <= 24)
-        greet = 'Good Evening, Jeremy. ';
-        
-    var random_ending = Math.random();
-    if(random_ending <= 0.25){
-    	random_ending = "Let's get some bread!";
-    } else if(random_ending <= 0.50){
-    	random_ending = "You're gonna crush it.";
-    } else if(random_ending <= 0.75) {
-    	random_ending = "It's time to get to work.";
-    } else {
-    	random_ending = "You look great!";
-    }
-
-    //document.getElementById('greeting').innerHTML += greet;
-    var str = greet + random_ending;
-
-var i = 0;
-  var interval = setInterval(function(){ 
-  	if(i < str.length) {
-    	document.getElementById('greeting').innerHTML += str[i];
-        i+=1;
-    } else { document.getElementById('greeting').classList.remove('type-effect');
-    continueFunction();}
-  }, 100);
-  
-  function continueFromBodyFunction() {
-  	if(ableToContFromBody != 0){
-    	continueFunction();
-    }
-  }
-  
-  function displayTable() {
-  	//document.getElementById('main-container').style.display = "none";
-    //document.getElementById('table').style.display = "block";
-  }
-  
-  function hideTable() {
-  	//document.getElementById('table').style.display = "none";
-    //document.getElementById('main-container').style.display = "block";
-  }
-  
-  function continueFunction() {
-    clearInterval(interval);
-    
-    //declare each class 2D array
-    //["name", lecture?, online?, start, end, startTime, endTime]
-    var calendar = 
-    [["",-1,-1,-1,"",0,0], /*sunday*/
-    ["Software Meth", 1, 1, "3 PM", "4:20 PM",15,16,
-    			  "WORK", 2, 0, "4:45 PM", "8 PM", 16, 20], /*monday*/
-    ["WORK", 2, 0, "11:30 AM", "1:30 PM", 11, 13,
-    			  "Discrete II", 1, 1, "1 PM", "2:20 PM",13,14,
-                  "WORK", 2, 0, "2:30 PM", "5 PM", 14, 17,
-    			  "Data Management", 1, 1, "5 PM", "6:20 PM",17,18], /*tuesday*/
-    ["Stats Inference", 1, 0, "9 AM", "10:20 AM",9,10,
-    			  "Software Meth", 1, 1, "3 PM", "4:20 PM",15,16, 
-                  "Software Meth", 0, 0, "7 PM", "7:55 PM",19,20], /*wednesday*/
-    ["Data Management", 0, 0, "9 AM", "9:55 AM",9,10,
-    			  "WORK", 2, 0, "11:45 AM", "1:45 PM", 11, 13,
-    			  "Discrete II", 1, 1, "1 PM", "2:20 PM",13,14,
-                  "Discrete II", 0, 0, "3 PM", "3:55 PM",15,16,
-                  "Data Management", 1, 1, "5 PM", "6:20 PM",17,18], /*thursday*/
-    ["Stats Inference", 1, 0, "3 PM", "4:20 PM",15,16], /*friday*/
-    ["",-1,-1,-1,"",0,0]] /*saturday*/
-   
-	
-    var today = new Date();
-    var hrs = today.getHours();
-    var dow = today.getDay();
-    
-    var entryNums = (calendar[dow].length)/7;
-    
-    var sampleStr = "";
-    for(var i = 0; i < entryNums; i++){
-    	if(hrs >= calendar[dow][(i*7)+6]){}
-        else if(hrs >= calendar[dow][(i*7)+5]){
-        	sampleStr += `<del>` + "- " + calendar[dow][i*7]+`</del>`;
-        	if(calendar[dow][(i*7)+1] == 1){
-        		sampleStr += `<del><sup style = "padding: 0px 3px; margin: 5px; border: 1px solid transparent; border-radius: 3px; background-color: #9831c4;">Lec</sup></del>`;
-        	} else if(calendar[dow][(i*7)+1] == 0) {sampleStr += `<del><sup style = "padding: 0px 3px; margin: 5px; border: 1px solid transparent; border-radius: 3px; background-color: #4f4f4f;">Rec</sup></del>`;
-            } else if(calendar[dow][(i*7)+1] == 2){
-        		sampleStr += `<del><sup style = "padding: 0px 3px; margin: 5px; border: 1px solid transparent; border-radius: 3px; background-color: #03cafc;">WORK</sup></del>`;
-        	}
-            
-        	if(calendar[dow][(i*7)+2] == 1){
-        		sampleStr += `<del> Online</del>`;
-        	} else {sampleStr += `<del><sup style = "padding: 0px 3px; margin: 5px; border: 1px solid #E74C3C; border-radius: 3px; color: #E74C3C;">IRL</sup></del>`;}
-        	sampleStr += `<del>` + " @ " + calendar[dow][(i*7)+3] + " - " + calendar[dow][(i*7)+4] + `</del>` + `<br>`;
-        }
-        else {
-    	sampleStr += "- " + calendar[dow][i*7]/* + `<br>`*/;
-        if(calendar[dow][(i*7)+1] == 1){
-        	sampleStr += `<sup style = "padding: 0px 3px; margin: 5px; border: 1px solid transparent; border-radius: 3px; background-color: #9831c4;">Lec</sup>`;
-        } else if(calendar[dow][(i*7)+1] == 0) {sampleStr += `<sup style = "padding: 0px 3px; margin: 5px; border: 1px solid transparent; border-radius: 3px; background-color: #4f4f4f;">Rec</sup>`;
-        } else if(calendar[dow][(i*7)+1] == 2) {
-        	sampleStr += `<sup style = "padding: 0px 3px; margin: 5px; border: 1px solid transparent; border-radius: 3px; background-color: #03cafc;">WORK</sup>`;
-        }
-        if(calendar[dow][(i*7)+2] == 1){
-        	sampleStr += " Online";
-        } else {sampleStr += `<sup style = "padding: 0px 3px; margin: 5px; border: 1px solid #E74C3C; border-radius: 3px; color: #E74C3C;">IRL</sup>`;}
-        sampleStr += " @ " + calendar[dow][(i*7)+3] + " - " + calendar[dow][(i*7)+4] + `<br>`;
-        }
-    }
-	document.getElementById('reminders').innerHTML = sampleStr;
-	document.getElementById('endline').style.display = "block";
-    
-	
-  	document.getElementById('reminder-title').innerHTML = ">> Today's reminders: ";
-    /*document.getElementById('reminders').innerHTML = "- [Class/work] (Online/IRL) @ [start_time] - [end_time]"+`<br>`+"- [weekly assignment] due tonight!!";*/
-    document.getElementById('after-span').style.display = "inline";
-    document.getElementById('prefix').style.display = "inline";
-    document.getElementById('after-span').focus();
-    document.getElementById('after-span').classList.add('type-effect');
-    ableToContFromBody = 1;
-  }
-</script> 
+</body> 
 </html>
