@@ -90,15 +90,15 @@ try {
             
             if(class_start_hour > 12) {
             	if(class_end_hour > 12) {
-                	document.getElementById('time_slot').innerHTML = (class_start_hour - 12) + ":" + String(class_end_min) + " PM - " + (class_end_hour - 12) + ":" + String(class_end_min) + " PM";
+                	document.getElementById('time_slot').innerHTML = (class_start_hour - 12) + ":" + String(class_start_min) + " PM - " + (class_end_hour - 12) + ":" + String(class_end_min) + " PM";
                 } else {
-                	document.getElementById('time_slot').innerHTML = (class_start_hour - 12) + ":" + String(class_end_min) + " PM - " + String(class_end_hour) + ":" + String(class_end_min) + " AM";
+                	document.getElementById('time_slot').innerHTML = (class_start_hour - 12) + ":" + String(class_start_min) + " PM - " + String(class_end_hour) + ":" + String(class_end_min) + " AM";
                 }
             } else {
             	if(class_end_hour > 12) {
-                	document.getElementById('time_slot').innerHTML = class_start_hour + ":" + class_end_min + " PM - " + (class_end_hour - 12) + ":" + String(class_end_min) + " PM";
+                	document.getElementById('time_slot').innerHTML = class_start_hour + ":" + class_start_min + " PM - " + (class_end_hour - 12) + ":" + String(class_end_min) + " PM";
                 } else {
-                	document.getElementById('time_slot').innerHTML = class_start_hour + ":" + class_end_min + " AM - " + class_end_hour + ":" + String(class_end_min) + " AM";
+                	document.getElementById('time_slot').innerHTML = class_start_hour + ":" + class_start_min + " AM - " + class_end_hour + ":" + String(class_end_min) + " AM";
                 }
             }
             var raw_diff = ((class_start_hour - raw_hour) * 60) + (class_start_min - raw_min);
@@ -118,6 +118,10 @@ try {
             }
             if(hours_left > 0 && mins_left > 0) {
             	sub_time_slot_message = hours_units + "and " + mins_units;
+            } else if(hours_left > 0) {
+            	sub_time_slot_message = hours_units;
+            } else {
+            	sub_time_slot_message = mins_units;
             }
             document.getElementById('sub_time_slot').innerHTML = "(" + sub_time_slot_message + "until class starts)";
             break;
