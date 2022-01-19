@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+<style>
+body {
+	margin: auto;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    line-height: 10px;
+}
+#class_heading {
+	color: #0f7b6c;
+}
+#time_slot {
+	font-size: 18px;
+}
+#sub_time_slot {
+	color: #9e9e9e;
+	font-size: 15px;
+}
+</style>
+</head>
+<body>
+
+<h1 id="class_heading"></h1>
+<p id="time_slot"></p>
+<p id="sub_time_slot"></p>
+
+</body>
+<script>
+const date = new Date();
+const coeff = 1000 * 60 * 15;
+var rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
+var day = rounded.getDay();
+var raw_hour = date.getHours();
+var raw_min = date.getMinutes();
+var hour = rounded.getHours();
+var minute = rounded.getMinutes()
+var time = hour + ":" + minute;
+
+var DoW = {0:"Sunday", 1:"Monday", 2:"Tuesday", 3:"Wednesday", 4:"Thursday", 5:"Friday", 6:"Saturday"};
+var monday = {	"12:10":{"13:30":"Intro."},
+				"15:50":{"17:10":"Regression Methods"}};
+var tuesday = {	"14:00":{"15:20":"Algos."},
+				"15:50":{"16:45":"Algos. Rec."},
+                "17:40":{"19:00":"Databases"},
+                "21:20":{"22:15":"Databases Rec."}};
+var wed = {		"15:50":{"17:10":"Regression Methods"}};
+var thurs = {	"12:10":{"13:30":"Intro."},
+				"14:00":{"15:20":"Algos."},
+                "17:40":{"19:00":"Databases"},
+                "19:30":{"20:25":"Intro. Rec."}};
+var classes = [monday, tuesday, wed, thurs];
+var classes_today = null;
+if(day >= 1 && day <= 4) {
+	classes_today = classes[day-1];
+}
+try {
+	for(var key in Object.keys(classes_today)) {
+    	var class_start = document.getElementById('time_slot').innerHTML = Object.keys(classes_today)[key];
+       var class_start_hour = class_start.split(":")[0];
+       var class_start_min = class_start.split(":")[1];
+       var diff = ((class_start_hour - hour) * 60) + (class_start_min - minute);
+       var class_end_time = Object.keys(classes_today[Object.keys(classes_today)[key]])+"";
+       var class_end_hour = class_end_time.split(":")[0];
+       var class_end_min = class_end_time.split(":")[1];
+       var class_length = ((class_end_hour - class_start_hour) * 60) + (class_end_min - class_start_min);
+       if(Math.abs(diff) > class_length && diff < 0) {
+       		document.getElementById('class_heading').innerHTML = '';
+       		document.getElementById('time_slot').innerHTML = '';
+            document.getElementById('sub_time_slot').innerHTML = '';
+       		continue;
+       } else if(diff < 0) {
+       		document.getElementById('time_slot').innerHTML = "Class has started!!";
+       } else if(diff == 0) {
+       		document.getElementById('time_slot').innerHTML = "Class is starting NOW!";
+       } else {
+       		document.getElementById('class_heading').innerHTML = classes_today[class_start][class_end_time];
+            
+            if(class_start_hour > 12) {
+            	if(class_end_hour > 12) {
+                	document.getElementById('time_slot').innerHTML = (class_start_hour - 12) + ":" + String(class_end_min) + " PM - " + (class_end_hour - 12) + ":" + String(class_end_min) + " PM";
+                } else {
+                	document.getElementById('time_slot').innerHTML = (class_start_hour - 12) + ":" + String(class_end_min) + " PM - " + String(class_end_hour) + ":" + String(class_end_min) + " AM";
+                }
+            } else {
+            	if(class_end_hour > 12) {
+                	document.getElementById('time_slot').innerHTML = class_start_hour + ":" + class_end_min + " PM - " + (class_end_hour - 12) + ":" + String(class_end_min) + " PM";
+                } else {
+                	document.getElementById('time_slot').innerHTML = class_start_hour + ":" + class_end_min + " AM - " + class_end_hour + ":" + String(class_end_min) + " AM";
+                }
+            }
+            var raw_diff = ((class_start_hour - raw_hour) * 60) + (class_start_min - raw_min);
+            var hours_left = Math.floor(raw_diff / 60);
+            var mins_left = Math.round(raw_diff % 60);
+            var hours_units = String(hours_left) + " hours ";
+            var mins_units = String(mins_left) + " minutes ";
+            var sub_time_slot_message = "";
+            if(hours_left == 0 && mins_left == 0) {
+            	document.getElementById('sub_time_slot').innerHTML = "";}
+            if(hours_left == 0) {hours_units = "";}
+            else if(hours_left == 1) {
+            	hours_units = String(hours_left) + " hour ";
+            }
+            else if(mins_left == 1) {
+            	mins_units = String(mins_left) + " minute ";
+            }
+            if(hours_left > 0 && mins_left > 0) {
+            	sub_time_slot_message = hours_units + "and " + mins_units;
+            }
+            document.getElementById('sub_time_slot').innerHTML = "(" + sub_time_slot_message + "until class starts)";
+            break;
+       }
+    }
+} catch(err) {
+	
+}
+
+</script>
+</html>
+
+
