@@ -35,7 +35,7 @@ body {
 <div id="spacer"></div>
 <h1 id="class_heading"></h1>
 <p id="time_slot"></p>
-<p id="sub_time_slot"></p>
+<p id="sub_time_slot" onclick="reload()"></p>
 
 </body>
 <script>
@@ -131,7 +131,8 @@ try {
 	
 }
 
+function reload() {
+	window.location = self.location;
+}
 </script>
 </html>
-
-
