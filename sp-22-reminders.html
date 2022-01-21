@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@ body {
 }
 </style>
 </head>
-<body>
+<body onload="init()">
 
 <div id="spacer"></div>
 <h1 id="class_heading"></h1>
@@ -39,6 +40,7 @@ body {
 
 </body>
 <script>
+function init() {
 const date = new Date();
 const coeff = 1000 * 60 * 15;
 var rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
@@ -130,9 +132,12 @@ try {
 } catch(err) {
 	
 }
+}
+
+setInterval(init, 30000);
 
 function reload() {
-	window.location = self.location;
+	init();
 }
 </script>
 </html>
